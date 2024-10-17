@@ -1,15 +1,15 @@
 package liststuff;
 
-public class LinkedList {
-  private Link first;
-  private Link last;
+public class LinkedList<E> {
+  private Link<E> first;
+  private Link<E> last;
 
   /**
    * Getter - added to facilitate the recursive sizeRecursive().
    *
    * @return
    */
-  public Link getFirst() {
+  public Link<E> getFirst() {
     return first;
   }
 
@@ -18,7 +18,7 @@ public class LinkedList {
    *
    * @return
    */
-  public Link getLast() {
+  public Link<E> getLast() {
     return last;
   }
 
@@ -36,7 +36,7 @@ public class LinkedList {
   if(this.isEmpty()){
   return 0;
   }
-  Link aLink = this.first;
+  Link<E> aLink = this.first;
   int count = 0;
   while(aLink != null){
   ++count;
@@ -53,8 +53,8 @@ public class LinkedList {
    * @return
    *         It return an int.
    */
-  public int sizeRecursive(Link aLink) {
-    Link head = aLink;
+  public int sizeRecursive(Link<E> aLink) {
+    Link<E> head = aLink;
 
     if (head == null) {
       return 0;
@@ -64,11 +64,11 @@ public class LinkedList {
     return 1 + this.sizeRecursive(head.getAfter());
   }
 
-  public String get(int index) {
+  public E get(int index) {
     if (index < 0 || index > (this.sizeRecursive(this.getFirst()) - 1) || this.isEmpty()) {
       return null;
     }
-    Link aLink = this.first;
+    Link<E> aLink = this.first;
     int count = 0;
     while (count < index && aLink != null) {
       aLink = aLink.getAfter();
@@ -77,11 +77,11 @@ public class LinkedList {
     return aLink.getItem();
   }
 
-  public Link getLink(int index){
+  public Link<E> getLink(int index){
     if (index < 0 || index > (this.sizeRecursive(this.getFirst()) - 1) || this.isEmpty()) {
       return null;
     }
-    Link aLink = this.first;
+    Link<E> aLink = this.first;
     int count = 0;
     while (count < index && aLink != null) {
       aLink = aLink.getAfter();
@@ -90,9 +90,9 @@ public class LinkedList {
     return aLink;
   }
 
-  public void addFirst(String anItem) {
-    Link oldFirstLink = this.first;
-    Link aLink = new Link(anItem);
+  public void addFirst(E anItem) {
+    Link<E> oldFirstLink = this.first;
+    Link<E> aLink = new Link<E>(anItem);
     this.first = aLink;
     if (this.last != null) {
       aLink.setAfter(oldFirstLink);
@@ -103,9 +103,9 @@ public class LinkedList {
     return;
   }
 
-  public void addLast(String anItem) {
-    Link oldLastLink = this.last;
-    Link aLink = new Link(anItem);
+  public void addLast(E anItem) {
+    Link<E> oldLastLink = this.last;
+    Link<E> aLink = new Link<E>(anItem);
     this.last = aLink;
     if (this.first != null) {
       aLink.setBefore(oldLastLink);
@@ -116,8 +116,8 @@ public class LinkedList {
     return;
   }
 
-  public String add(int anIndex, String anItem){
-    Link aLink = new Link(anItem);
+  public E add(int anIndex, E anItem){
+    Link<E> aLink = new Link<E>(anItem);
     if (anIndex < 0 || anIndex > this.sizeRecursive(first)){
       return null;
     } else if (anIndex == 0){
@@ -127,8 +127,8 @@ public class LinkedList {
       this.addLast(anItem);
       return getLast().getItem();
     } else {
-      Link after = this.getLink(anIndex);
-      Link before = this.getLink(anIndex -1);
+      Link<E> after = this.getLink(anIndex);
+      Link<E> before = this.getLink(anIndex -1);
       after.setBefore(aLink);
       before.setAfter(aLink);
       aLink.setBefore(before);
@@ -137,11 +137,11 @@ public class LinkedList {
     }
   }
 
-  public String removeFirst() {
+  public E removeFirst() {
     if (this.isEmpty()) {
       return null;
     }
-    Link oldFirstLink = this.first;
+    Link<E> oldFirstLink = this.first;
     this.first = oldFirstLink.getAfter();
     if (this.first == null) {
       this.last = null;
@@ -152,11 +152,11 @@ public class LinkedList {
     return oldFirstLink.getItem();
   }
 
-  public String removeLast() {
+  public E removeLast() {
     if (this.isEmpty()) {
       return null;
     }
-    Link oldLastLink = this.last;
+    Link<E> oldLastLink = this.last;
     this.last = oldLastLink.getBefore();
     if (this.last == null) {
       this.first = null;
@@ -167,7 +167,7 @@ public class LinkedList {
     return oldLastLink.getItem();
   }
 
-  public String remove(int anIndex){
+  public E remove(int anIndex){
     if (anIndex < 0 || anIndex > this.sizeRecursive(first)){
       return null;
     } else if (anIndex == 0){
@@ -175,9 +175,9 @@ public class LinkedList {
     } else if (anIndex == (this.sizeRecursive(first)-1)){
       return this.removeLast();
     } else {
-      String removed = this.get(anIndex);
-      Link after = this.getLink(anIndex).getAfter();
-      Link before = this.getLink(anIndex).getBefore();
+      E removed = this.get(anIndex);
+      Link<E> after = this.getLink(anIndex).getAfter();
+      Link<E> before = this.getLink(anIndex).getBefore();
       after.setBefore(before);
       before.setAfter(after);
       return removed;

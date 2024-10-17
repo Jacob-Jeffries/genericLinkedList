@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-public class LinkedListTest {
+public class LinkedListTest<E> {
 
-  private LinkedList aList;
+  private LinkedList<E> aList;
 
   @BeforeEach
   public void setUp() {
     // Uses inherited constructor from Object to null-out variables.
-    aList = new LinkedList();
+    aList = new LinkedList<E>();
   }
 
   @AfterEach
