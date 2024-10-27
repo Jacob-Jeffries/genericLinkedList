@@ -7,11 +7,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 public class LinkedListTest_Educat {
-  private LinkedList aList;
+  private LinkedList<String> aList;
 
   @BeforeEach
   public void setUp() {
-    aList = new LinkedList();
+    aList = new LinkedList<String>();
   }
 
   @AfterEach

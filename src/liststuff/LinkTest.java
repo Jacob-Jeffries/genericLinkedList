@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 
 public class LinkTest {
 
-  private Link aLink;
+  private Link<String> aLink;
 
   @BeforeEach
   public void setUp(){
-    aLink = new Link("ocarina");
+    aLink = new Link<>("ocarina");
   }
 
   @AfterEach
@@ -29,7 +29,7 @@ public class LinkTest {
 
   @Test
   public void testLinkage(){
-    Link otherLink = new Link("shield");
+    Link<String> otherLink = new Link<>("shield");
     aLink.setAfter(otherLink);
     otherLink.setBefore(aLink);
     assertEquals(otherLink, aLink.getAfter());

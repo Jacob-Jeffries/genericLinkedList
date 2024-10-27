@@ -8,12 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class LinkedListTest<E> {
 
-  private LinkedList<E> aList;
+  private LinkedList<String> aList;
 
   @BeforeEach
   public void setUp() {
     // Uses inherited constructor from Object to null-out variables.
-    aList = new LinkedList<E>();
+    aList = new LinkedList<String>();
   }
 
   @AfterEach

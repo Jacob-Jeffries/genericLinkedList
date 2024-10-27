@@ -1,6 +1,6 @@
 package liststuff;
 
-public class LinkedList<E> {
+public class LinkedList<E> implements List<E>{
   private Link<E> first;
   private Link<E> last;
 
